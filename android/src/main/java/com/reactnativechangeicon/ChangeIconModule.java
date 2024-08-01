@@ -74,7 +74,7 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
         final String newIconName = (iconName == null || iconName.isEmpty()) ? "Default" : iconName;
 
         int lastIndexOfDot = activityName.lastIndexOf('.');
-        String baseActivityName = activityName.substring(0, lalastIndexOfDotstIndex);
+        String baseActivityName = activityName.substring(0, lastIndexOfDot);
 
         final String activeClass = baseActivityName + ".MainActivity" + newIconName;
 
