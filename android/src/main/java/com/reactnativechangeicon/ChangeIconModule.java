@@ -72,7 +72,12 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
         }
 
         final String newIconName = (iconName == null || iconName.isEmpty()) ? "Default" : iconName;
-        final String activeClass = this.packageName + ".MainActivity" + newIconName;
+
+        int lastIndexOfDot = activityName.lastIndexOf('.');
+        String baseActivityName = activityName.substring(0, lastIndex);
+
+        final String activeClass = baseActivityName + ".MainActivity" + newIconName;
+        
         if (this.componentClass.equals(activeClass)) {
             promise.reject("ANDROID:ICON_ALREADY_USED:" + this.componentClass);
             return;
