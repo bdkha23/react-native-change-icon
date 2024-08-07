@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.ComponentName;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -102,6 +103,7 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
             return;
         }
         try {
+            assert activity != null;
             activity.getPackageManager().setComponentEnabledSetting(
                     new ComponentName(this.packageName, newLaunchClassName),
                     PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
@@ -123,6 +125,7 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
         final Activity activity = getCurrentActivity();
         if (activity == null)
             return;
+
         classesToKill.remove(this._currentLaunchClassName);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             classesToKill.forEach((cls) -> activity.getPackageManager().setComponentEnabledSetting(
